@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="extension_downloader" status="experimental" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Extension Downloader</name>
+	<description>
+		An extension that makes it easy to install others extensions directly from the backend. Uses data from symphonyextensions.com
+	</description>
+	<repo type="github">https://github.com/DeuxHuitHuit/extension_downloader</repo>
+	<url type="discuss">https://github.com/DeuxHuitHuit/extension_downloader/issues</url>
+	<url type="issues">https://github.com/DeuxHuitHuit/extension_downloader/issues</url>
+	<types>
+		<type>Extensions</type>
+		<type>Installer</type>
+		<type>Workflow</type>
+	</types>
+	<authors>
+		<author>
+			<name github="DeuxHuitHuit" symphony="nitriques" twitter="DeuxHuitHuit">Deux Huit Huit</name>
+			<website>http://www.deuxhuithuit.com</website>
+		</author>
+	</authors>
+	<dependencies>
+		<!-- None -->
+	</dependencies>
+	<releases>
+		<release version="1.0" date="TBA" min="2.4">
+			- First release
+		</release>
+	</releases>
+</extension>

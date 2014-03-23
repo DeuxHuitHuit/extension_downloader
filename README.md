@@ -1,4 +1,4 @@
-extension_downloader
-====================
+# Extension Downloader
+
 
 An extension that makes it easy to install others extensions directly from the backend.
