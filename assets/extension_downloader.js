@@ -12,7 +12,8 @@
 	var download = function () {
 		wrap.addClass('loading');
 		input.attr('disabled', 'disabled').blur();
-		$.post('/symphony/extension/extension_downloader/download/', {
+		url = Symphony.Context.get('root');
+		$.post(url+'/symphony/extension/extension_downloader/download/', {
 				q: input.val()
 			}, function (data) {
 			if (data.success) {
