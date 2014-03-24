@@ -24,22 +24,36 @@
 				$this->download();
 				$this->_Result['success'] = true; 
 			} catch (Exception $e) {
+				$this->_Result['success'] = false; 
 				$this->_Result['error'] = $e->getMessage();
 			}
+		}
+		
+		private static function handleFromPath($path) {
+			// github-user/repo-name
+			// complete github url
+			// custom zip url
+			$path = str_replace('/zipball/master', '', $path);
+			$parts = explode('/', $path);
+			$handle = $parts[count($parts)-1];
+			$parts = explode('.', $handle);
+			return $parts[count($parts)-1];
 		}
 		
 		private function parseInput() {
 			$query = General::sanitize($_REQUEST['q']);
 			if (empty($query)) {
 				throw new Exception(__('Query cannot be empty'));
-			} else if (strpos($query, 'zipball') !== FALSE) {
+			} else if (strpos($query, 'zipball') !== FALSE || strpos($query, '.zip') !== FALSE) {
 				// full url
 				$this->downloadUrl = $query;
+				$this->extensionHandle = self::handleFromPath($query);
 			} else if (strpos($query, '/') !== FALSE) {
-				// github-user/repo-name
-				$explodedQuery = explode('/', $query);
-				$this->extensionHandle = $explodedQuery[count($explodedQuery)-1];
+				$this->extensionHandle = self::handleFromPath($query);
 				$this->downloadUrl = "https://github.com/$query/zipball/master";
+			} else {
+				// do a search for this handle
+				$this->searchExtension($query);
 			}
 		}
 		
@@ -81,9 +95,22 @@
 			// delete tarbal
 			General::deleteFile($tmpFile, false); 
 			
-			// rename extension folder
-			if (!@rename(EXTENSIONS . '/' . $dirname, EXTENSIONS . '/' . $this->extensionHandle)) {
-				throw new Excpetion(__('Could not rename directory %s', array($dirname)));
+			// prepare
+			$curDir = EXTENSIONS . '/' . $dirname;
+			$toDir =  EXTENSIONS . '/' . $this->extensionHandle;
+			
+			// delete current version
+			if (!General::deleteDirectory($toDir)) {
+				throw new Exception(__('Could not delete %s', array($toDir)));
 			}
+			
+			// rename extension folder
+			if (!@rename($curDir, $toDir)) {
+				throw new Exception(__('Could not rename %s to %s', array($curDir, $toDir)));
+			}
+		}
+		
+		private function searchExtension($query) {
+			
 		}
 	}

@@ -2,7 +2,16 @@
  * @author Deux Huit Huit
  */
 
-#contents {
-	
+#extension_downloader {
+	margin: 1em 0;
 }
 
+#extension_downloader h3 {
+	padding: 0 20px 0 0;
+	margin: 0 1em 0 0;
+	display: block;
+}
+
+#extension_downloader.loading h3 {
+	background: transparent url(ajax-loader.gif) no-repeat 100% 50%;	
+}
