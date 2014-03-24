@@ -11,6 +11,7 @@
 	
 	var download = function () {
 		wrap.addClass('loading');
+		input.attr('disabled', 'disabled').blur();
 		$.post('/symphony/extension/extension_downloader/download/', {
 				q: input.val()
 			}, function (data) {
@@ -18,12 +19,14 @@
 				alert('Download completed! Page will refresh.');
 				document.location.reload();
 			} else {
-				alert(data.error);	
+				alert(data.error || 'Unknown error');
 			}
 		}).fail(function (e) {
-			alert('error');	
+			alert('HTTP error');
 		}).always(function (e) {
 			wrap.removeClass('loading');
+			input.removeAttr('disabled');
+			input.focus();
 		});
 	};
 	

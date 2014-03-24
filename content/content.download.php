@@ -68,7 +68,7 @@
 			$response = @$gateway->exec();
 			
 			if (!$response) {
-				throw new Exception(__("Could not read from $this->tarUrl"));
+				throw new Exception(__("Could not read from %s", array($this->downloadUrl)));
 			}
 			
 			// write the output
@@ -111,6 +111,47 @@
 		}
 		
 		private function searchExtension($query) {
+			$url = "http://symphonyextensions.com/api/extensions/$query/";
 			
+			// create the Gateway object
+			$gateway = new Gateway();
+
+			// set our url
+			$gateway->init($url);
+
+			// get the raw response, ignore errors
+			$response = @$gateway->exec();
+			
+			if (!$response) {
+				throw new Exception(__("Could not read from %s", array($url)));
+			}
+			
+			$xml = @simplexml_load_string($response);
+			
+			if (!$xml) {
+				throw new Exception(__("Could not parse xml from %s", array($url)));
+			}
+			
+			$extension = $xml->xpath('/response/extension');
+			
+			if (empty($extension)) {
+				throw new Exception(__("Could not find extension %s", array($query)));
+			}
+			
+			$this->extensionHandle = $xml->xpath('/response/extension/@id');
+			
+			if (empty($this->extensionHandle)) {
+				throw new Exception(__("Could not find extension handle"));
+			} else {
+				$this->extensionHandle = $this->extensionHandle[0];	
+			}
+			
+			$this->downloadUrl = $xml->xpath("/response/extension/link[@rel='github:zip']/@href");
+			
+			if (empty($this->downloadUrl)) {
+				throw new Exception(__("Could not find extension handle"));
+			} else {
+				$this->downloadUrl = $this->downloadUrl[0];	
+			}
 		}
 	}
