@@ -8,11 +8,12 @@
 	var context;
 	var wrap;
 	var input;
+	var url = Symphony.Context.get('root');
 	
 	var download = function () {
 		wrap.addClass('loading');
 		input.attr('disabled', 'disabled').blur();
-		$.post('/symphony/extension/extension_downloader/download/', {
+		$.post(url+'/symphony/extension/extension_downloader/download/', {
 				q: input.val()
 			}, function (data) {
 			if (data.success) {
