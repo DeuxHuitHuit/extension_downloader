@@ -77,14 +77,23 @@
 		
 		$.post(SEARCH_URL, data, function (data) {
 			var temp = $();
+			var createSpan = function (clas, text) {
+				return $('<span />').attr('class', 'ed_' + clas).text(text);	
+			};
 			if (data.success && data.results) {
 				results.empty();
 				if (!!data.results.length) {
 					$.each(data.results, function (i, r) {
 						var a = $('<a />')
 							.attr('href','#')
-							.attr('data-handle', r.handle)
-							.text(r.name);
+							.attr('data-handle', r.handle);
+						var name = createSpan('name', r.name);
+						var version = createSpan('version', r.version);
+						var status = createSpan('status', r.status);
+						var dev = createSpan('dev', r.by);
+						
+						a.append(name).append(version).append(status).append(dev);
+						
 						temp = temp.add(a);
 					});
 					results.append(temp);
@@ -138,7 +147,7 @@
 	};
 	
 	var resultClick = function (e) {
-		var t = $(e.target);
+		var t = $(this);
 		input.val(t.attr('data-handle'));
 		setTimeout(download, 50);
 		e.preventDefault();

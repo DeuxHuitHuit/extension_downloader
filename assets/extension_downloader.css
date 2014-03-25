@@ -23,3 +23,21 @@
 #extension_downloader_results a {
 	display: block;	
 }
+
+#extension_downloader_results a span {
+	display: inline-block;	
+}
+#extension_downloader_results a span.ed_name {
+	min-width: 18em;	
+}
+#extension_downloader_results a span.ed_version {
+	min-width: 5em;	
+}
+#extension_downloader_results a span.ed_status,
+#extension_downloader_results a span.ed_dev {
+	font-size: 0.9em;
+	margin-left:2em;
+}
+#extension_downloader_results a span.ed_status {
+	min-width: 8em;
+}
