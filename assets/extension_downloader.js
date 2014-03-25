@@ -16,6 +16,7 @@
 	var context;
 	var wrap;
 	var input;
+	var results;
 	
 	var searchTimer = 0;
 	
@@ -67,8 +68,19 @@
 		wrap.addClass('loading');
 		
 		$.post(SEARCH_URL, data, function (data) {
+			var temp = $();
 			if (data.success && data.results) {
-				console.log(data.results);
+				results.empty();
+				if (!!data.results.length) {
+					$.each(data.results, function (i, r) {
+						var a = $('<a />')
+							.attr('href','#')
+							.attr('data-handle', r.handle)
+							.text(r.name);
+						temp = temp.add(a);
+					});
+					results.append(temp);
+				}
 			} else {
 				error(data);
 			}
@@ -104,8 +116,16 @@
 		if (e.which === 13) {
 			download();
 		} else {
-			searchTimer = setTimeout(search, 300);	
+			searchTimer = setTimeout(search, 200);	
 		}
+	};
+	
+	var resultClick = function (e) {
+		var t = $(e.target);
+		input.val(t.attr('data-handle'));
+		setTimeout(download, 50);
+		e.preventDefault();
+		return false;
 	};
 	
 	var injectUI = function () {
@@ -113,12 +133,14 @@
 		wrap = $('<div />').attr('id', 'extension_downloader');
 		var title = $('<h3 />').text('Download extension');
 		input = $('<input />').attr('placeholder',
-			'zipball url, github-user/repo or extension_handle');
+			'zipball url, github-user/repo, extension_handle or keywords');
+		results = $('<div />').attr('id', 'extension_downloader_results');
 		
-		wrap.append(title).append(input);
+		wrap.append(title).append(input).append(results);
 		context.append(wrap);
 		
 		input.keyup(keyup);
+		results.on('click', 'a', resultClick);
 	};
 	
 	var selectExtension = function () {

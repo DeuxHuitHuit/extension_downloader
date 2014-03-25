@@ -15,3 +15,11 @@
 #extension_downloader.loading h3 {
 	background: transparent url(ajax-loader.gif) no-repeat 100% 50%;	
 }
+
+#extension_downloader_results {
+	padding: 1em 0;
+}
+
+#extension_downloader_results a {
+	display: block;	
+}
