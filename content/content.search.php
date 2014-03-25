@@ -13,6 +13,7 @@
 
 		private $query;
 		private $empty;
+		private $version;
 		
 		/**
 		 *
@@ -39,11 +40,15 @@
 				// do a search for this query
 				$this->query = $query;
 			}
+			
+			if (!isset($_REQUEST['compatible']) || $_REQUEST['compatible'] == 'true') {
+				$this->version = Symphony::Configuration()->get('version', 'symphony');
+			}
 		}
 		
 		private function search() {
 			$results = array();
-			$url = "http://symphonyextensions.com/api/extensions/?keywords=$this->query&type=&compatible-with=&sort=updated&order=desc";
+			$url = "http://symphonyextensions.com/api/extensions/?keywords=$this->query&type=&compatible-with=$this->version&sort=updated&order=desc";
 			
 			// create the Gateway object
 			$gateway = new Gateway();
