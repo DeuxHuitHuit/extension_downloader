@@ -28,7 +28,7 @@
 		
 		wrap.addClass('loading');
 		
-		$.post(DOWNLOAD_URL, data, function (data) {
+		$.post(SEARCH_URL, data, function (data) {
 			if (data.success && data.results) {
 				console.log(data.results);
 			} else {
