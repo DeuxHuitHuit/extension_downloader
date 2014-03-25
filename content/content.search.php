@@ -75,10 +75,16 @@
 			foreach ($extensions as $index => $ext) {
 				$name = $ext->xpath('name');
 				$id = $ext->xpath('@id');
+				$developer = $ext->xpath('developer/name');
+				$version = $ext->xpath('version');
+				$status = $ext->xpath('status');
 				
 				$res = array(
 					'handle' => (string)$id[0],
-					'name' => (string)$name[0]
+					'name' => (string)$name[0],
+					'by' => (string)$developer[0],
+					'version' => (String)$version[0],
+					'status' => (String)$status[0],
 				);
 				
 				$results[] = $res;
