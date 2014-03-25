@@ -65,6 +65,11 @@
 			q: input.val()
 		};
 		
+		if (!data.q) {
+			results.empty();
+			return;	
+		}
+		
 		wrap.addClass('loading');
 		
 		$.post(SEARCH_URL, data, function (data) {
@@ -81,7 +86,7 @@
 					});
 					results.append(temp);
 				}
-			} else {
+			} else if (!data.empty) {
 				error(data);
 			}
 		}).fail(httpError).always(function (e) {
@@ -93,6 +98,10 @@
 		var data = {
 			q: input.val()
 		};
+		
+		if (!data.q) {
+			return;	
+		}
 		
 		wrap.addClass('loading');
 		input.attr('disabled', 'disabled').blur();

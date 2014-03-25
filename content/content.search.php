@@ -11,7 +11,9 @@
 
 	class contentExtensionExtension_DownloaderSearch extends JSONPage {
 
-		private $query;		
+		private $query;
+		private $empty;
+		
 		/**
 		 *
 		 * Builds the content view
@@ -22,6 +24,7 @@
 				$this->search();
 				$this->_Result['success'] = true; 
 			} catch (Exception $e) {
+				$this->_Result['empty'] = $this->empty;
 				$this->_Result['success'] = false; 
 				$this->_Result['error'] = $e->getMessage();
 			}
@@ -29,7 +32,8 @@
 		
 		private function parseInput() {
 			$query = General::sanitize($_REQUEST['q']);
-			if (empty($query)) {
+			$this->empty = empty($query);
+			if ($this->empty) {
 				throw new Exception(__('Query cannot be empty'));
 			} else {
 				// do a search for this query
