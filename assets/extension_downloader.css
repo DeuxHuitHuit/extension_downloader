@@ -12,6 +12,10 @@
 	display: block;
 }
 
+#extension_downloader h3 a {
+	float: right;
+}
+
 #extension_downloader.loading h3 {
 	background: transparent url(ajax-loader.gif) no-repeat 100% 50%;	
 }
@@ -31,7 +35,7 @@
 	min-width: 18em;	
 }
 #extension_downloader_results a span.ed_version {
-	min-width: 5em;	
+	min-width: 6em;	
 }
 #extension_downloader_results a span.ed_status,
 #extension_downloader_results a span.ed_dev {
@@ -39,5 +43,5 @@
 	margin-left:2em;
 }
 #extension_downloader_results a span.ed_status {
-	min-width: 8em;
+	min-width: 10em;
 }

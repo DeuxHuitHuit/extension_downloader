@@ -89,7 +89,7 @@
 							.attr('data-handle', r.handle);
 						var name = createSpan('name', r.name);
 						var version = createSpan('version', r.version);
-						var status = createSpan('status', r.status);
+						var status = createSpan('status', r.status + (r.compatible ? '' : ' (n/a)'));
 						var dev = createSpan('dev', r.by);
 						
 						a.append(name).append(version).append(status).append(dev);
@@ -148,8 +148,11 @@
 	
 	var resultClick = function (e) {
 		var t = $(this);
-		input.val(t.attr('data-handle'));
-		setTimeout(download, 50);
+		var handle = t.attr('data-handle');
+		if (confirm('Download ' + handle + '?')) {
+			input.val(handle);
+			setTimeout(download, 0);	
+		}
 		e.preventDefault();
 		return false;
 	};
@@ -157,7 +160,8 @@
 	var injectUI = function () {
 		context = $('#context');
 		wrap = $('<div />').attr('id', 'extension_downloader');
-		var title = $('<h3 />').text('Download extension');
+		var link = $('<a />').attr('href', 'http://symphonyextensions.com/').attr('target', '_blank').text('(Browse available extensions)');
+		var title = $('<h3 />').text('Download extension').append(link);
 		input = $('<input />').attr('placeholder',
 			'zipball url, github-user/repo, extension_handle or keywords');
 		results = $('<div />').attr('id', 'extension_downloader_results');

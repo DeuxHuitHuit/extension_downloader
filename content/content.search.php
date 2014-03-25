@@ -41,14 +41,16 @@
 				$this->query = $query;
 			}
 			
+			$this->version = Symphony::Configuration()->get('version', 'symphony');
+			
 			if (!isset($_REQUEST['compatible']) || $_REQUEST['compatible'] == 'true') {
-				$this->version = Symphony::Configuration()->get('version', 'symphony');
+				$this->compatibleVersion = $this->version;
 			}
 		}
 		
 		private function search() {
 			$results = array();
-			$url = "http://symphonyextensions.com/api/extensions/?keywords=$this->query&type=&compatible-with=$this->version&sort=updated&order=desc";
+			$url = "http://symphonyextensions.com/api/extensions/?keywords=$this->query&type=&compatible-with=$this->compatibleVersion&sort=updated&order=desc";
 			
 			// create the Gateway object
 			$gateway = new Gateway();
@@ -78,13 +80,15 @@
 				$developer = $ext->xpath('developer/name');
 				$version = $ext->xpath('version');
 				$status = $ext->xpath('status');
+				$compatible = $ext->xpath("compatibility/symphony[@version='$this->version']");
 				
 				$res = array(
 					'handle' => (string)$id[0],
 					'name' => (string)$name[0],
 					'by' => (string)$developer[0],
-					'version' => (String)$version[0],
-					'status' => (String)$status[0],
+					'version' => (string)$version[0],
+					'status' => (string)$status[0],
+					'compatible' => ($compatible != null),
 				);
 				
 				$results[] = $res;
