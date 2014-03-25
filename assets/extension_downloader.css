@@ -14,6 +14,7 @@
 
 #extension_downloader h3 a {
 	float: right;
+	font-size: 0.8em;
 }
 
 #extension_downloader.loading h3 {
