@@ -11,6 +11,8 @@
 	var SEARCH_URL = BASE_URL + 'search/';
 	var EXTENSIONS_URL = SYM_URL + 'system/extensions/';
 	
+	var COMPATIBLE_ONLY = true;
+	
 	var win = $(window);
 	
 	var context;
@@ -62,7 +64,8 @@
 	
 	var search = function () {
 		var data = {
-			q: input.val()
+			q: input.val(),
+			compatible: !COMPATIBLE_ONLY
 		};
 		
 		if (!data.q) {
