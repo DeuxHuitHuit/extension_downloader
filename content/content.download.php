@@ -22,7 +22,8 @@
 			try {
 				$this->parseInput();
 				$this->download();
-				$this->_Result['success'] = true; 
+				$this->_Result['success'] = true;
+				$this->_Result['handle'] = $this->extensionHandle; 
 			} catch (Exception $e) {
 				$this->_Result['success'] = false; 
 				$this->_Result['error'] = $e->getMessage();
@@ -144,15 +145,15 @@
 			if (empty($this->extensionHandle)) {
 				throw new Exception(__("Could not find extension handle"));
 			} else {
-				$this->extensionHandle = (string)$this->extensionHandle[0];	
+				$this->extensionHandle = (string)$this->extensionHandle[0];
 			}
 			
-			$this->downloadUrl = xml->xpath("/response/extension/link[@rel='github:zip']/@href");
+			$this->downloadUrl = $xml->xpath("/response/extension/link[@rel='github:zip']/@href");
 			
 			if (empty($this->downloadUrl)) {
 				throw new Exception(__("Could not find extension handle"));
 			} else {
-				$this->downloadUrl = (string)$this->downloadUrl[0];	
+				$this->downloadUrl = (string)$this->downloadUrl[0];
 			}
 		}
 	}
