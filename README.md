@@ -16,6 +16,8 @@ You can download extensions by specifying:
 ### REQUIREMENTS ###
 
 - Symphony CMS version 2.3 and up (as of the day of the last release of this extension)
+- You'll need to make sure PHP's Zip module is enabled (--enable-zip). 
+If you're on a shared server, your host would have had to do this when PHP was compiled.
 
 ### INSTALLATION ###
 
