@@ -29,11 +29,11 @@
 				$this->parseInput();
 				$this->download();
 				$this->_Result['success'] = true;
-				$this->_Result['handle'] = $this->extensionHandle; 
 			} catch (Exception $e) {
 				$this->_Result['success'] = false; 
 				$this->_Result['error'] = $e->getMessage();
 			}
+			$this->_Result['handle'] = $this->extensionHandle; 
 			$this->_Result['exists'] = $this->alreadyExists;
 			$this->_Result['force'] = $this->forceOverwrite;
 		}
