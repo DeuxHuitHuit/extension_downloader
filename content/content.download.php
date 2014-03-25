@@ -126,6 +126,7 @@
 				throw new Exception(__("Could not read from %s", array($url)));
 			}
 			
+			// parse xml
 			$xml = @simplexml_load_string($response);
 			
 			if (!$xml) {
@@ -143,15 +144,15 @@
 			if (empty($this->extensionHandle)) {
 				throw new Exception(__("Could not find extension handle"));
 			} else {
-				$this->extensionHandle = $this->extensionHandle[0];	
+				$this->extensionHandle = (string)$this->extensionHandle[0];	
 			}
 			
-			$this->downloadUrl = $xml->xpath("/response/extension/link[@rel='github:zip']/@href");
+			$this->downloadUrl = xml->xpath("/response/extension/link[@rel='github:zip']/@href");
 			
 			if (empty($this->downloadUrl)) {
 				throw new Exception(__("Could not find extension handle"));
 			} else {
-				$this->downloadUrl = $this->downloadUrl[0];	
+				$this->downloadUrl = (string)$this->downloadUrl[0];	
 			}
 		}
 	}
