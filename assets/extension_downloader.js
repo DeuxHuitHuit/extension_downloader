@@ -1,5 +1,6 @@
 /*
  * @author Deux Huit Huit
+ * LICENCE: MIT http://deuxhuithuit.mit-license.org;
  */
 (function ($) {
 	

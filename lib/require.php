@@ -1,5 +1,9 @@
 <?php
-
+	/*
+	Copyight: Deux Huit Huit 2014
+	LICENCE: MIT http://deuxhuithuit.mit-license.org;
+	*/
+	
 	// Only for 2.4+
 	if (file_exists(TOOLKIT . '/class.jsonpage.php')) {
 		require_once(TOOLKIT . '/class.jsonpage.php');
