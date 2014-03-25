@@ -11,8 +11,14 @@
 
 	class contentExtensionExtension_DownloaderDownload extends JSONPage {
 
+		private $forceOverwrite;
+		private $alreadyExists;
 		private $downloadUrl;
 		private $extensionHandle;
+		
+		private function getDestinationDirectory() {
+			return EXTENSIONS . '/' . $this->extensionHandle;	
+		}
 		
 		/**
 		 *
@@ -28,6 +34,8 @@
 				$this->_Result['success'] = false; 
 				$this->_Result['error'] = $e->getMessage();
 			}
+			$this->_Result['exists'] = $this->alreadyExists;
+			$this->_Result['force'] = $this->forceOverwrite;
 		}
 		
 		private static function handleFromPath($path) {
@@ -43,6 +51,9 @@
 		
 		private function parseInput() {
 			$query = General::sanitize($_REQUEST['q']);
+			
+			$this->forceOverwrite = (isset($_REQUEST['force']) && General::sanitize($_REQUEST['force']) == 'true');
+			
 			if (empty($query)) {
 				throw new Exception(__('Query cannot be empty'));
 			} else if (strpos($query, 'zipball') !== FALSE || strpos($query, '.zip') !== FALSE) {
@@ -55,6 +66,13 @@
 			} else {
 				// do a search for this handle
 				$this->searchExtension($query);
+			}
+			
+			// check if directory exists
+			$this->alreadyExists = file_exists($this->getDestinationDirectory());
+			
+			if (!$this->forceOverwrite && $this->alreadyExists) {
+				throw new Exception(__('Extension %s already exists', array($this->extensionHandle)));
 			}
 		}
 		
@@ -98,7 +116,7 @@
 			
 			// prepare
 			$curDir = EXTENSIONS . '/' . $dirname;
-			$toDir =  EXTENSIONS . '/' . $this->extensionHandle;
+			$toDir = $this->getDestinationDirectory();
 			
 			// delete current version
 			if (!General::deleteDirectory($toDir)) {

@@ -94,13 +94,14 @@
 		});
 	};
 	
-	var download = function () {
+	var download = function (force) {
 		var data = {
-			q: input.val()
+			q: input.val(),
+			force: force
 		};
 		
 		if (!data.q) {
-			return;	
+			return;
 		}
 		
 		wrap.addClass('loading');
@@ -109,7 +110,11 @@
 		$.post(DOWNLOAD_URL, data, function (data) {
 			if (data.success) {
 				alert('Download completed! Page will refresh.');
-				document.location = EXTENSIONS_URL + '?download_handle=' + data.handle; 
+				document.location = EXTENSIONS_URL + '?download_handle=' + data.handle;
+			} else if (data.exists) {
+				if (confirm('Extension ' + data.handle + ' already exists. Overwrite?')) {
+					download(true); // force download
+				}
 			} else {
 				error(data);
 			}
