@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="extension_downloader" status="experimental" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+<extension id="extension_downloader" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>Extension Downloader</name>
 	<description>
 		An extension that makes it easy to install others extensions directly from the backend. Uses data from symphonyextensions.com
@@ -22,7 +22,7 @@
 		<!-- None -->
 	</dependencies>
 	<releases>
-		<release version="1.0" date="TBA" min="2.4">
+		<release version="1.0" date="TBA" min="2.3" max="2.4">
 			- First release
 		</release>
 	</releases>

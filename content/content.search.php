@@ -6,7 +6,7 @@
 
 	if(!defined("__IN_SYMPHONY__")) die("<h2>Error</h2><p>You cannot directly access this file</p>");
 
-	require_once(TOOLKIT . '/class.jsonpage.php');
+	require_once(EXTENSIONS . '/extension_downloader/lib/require.php');
 	require_once(TOOLKIT . '/class.gateway.php');
 
 	class contentExtensionExtension_DownloaderSearch extends JSONPage {

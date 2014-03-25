@@ -160,10 +160,14 @@
 	var injectUI = function () {
 		context = $('#context');
 		wrap = $('<div />').attr('id', 'extension_downloader');
-		var link = $('<a />').attr('href', 'http://symphonyextensions.com/').attr('target', '_blank').text('(Browse available extensions)');
+		var link = $('<a />')
+				.attr('href', 'http://symphonyextensions.com/')
+				.attr('target', '_blank').text('(Browse available extensions)');
 		var title = $('<h3 />').text('Download extension').append(link);
-		input = $('<input />').attr('placeholder',
-			'zipball url, github-user/repo, extension_handle or keywords');
+		input = $('<input />')
+				.attr('type', 'text')
+				.attr('placeholder',
+				'zipball url, github-user/repo, extension_handle or keywords');
 		results = $('<div />').attr('id', 'extension_downloader_results');
 		
 		wrap.append(title).append(input).append(results);
