@@ -65,7 +65,7 @@
 			}
 		}
 
-		/* ********* INSTALL/UPDATE/UNISTALL ******* */
+		/* ********* INSTALL/UPDATE/UNINSTALL ******* */
 
 		/**
 		 * Creates the table needed for the settings of the field
