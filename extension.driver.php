@@ -39,11 +39,11 @@
 
 		/**
 		 *
-		 * Appends javascript file referneces into the head, if needed
+		 * Appends javascript file references into the head, if needed
 		 * @param array $context
 		 */
 		public function appendAssets(array $context) {
-			// store de callback array localy
+			// store the callback array locally
 			$c = Administration::instance()->getPageCallback();
 			
 			// extension page
