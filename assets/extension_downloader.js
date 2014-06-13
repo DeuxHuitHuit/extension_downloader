@@ -66,7 +66,8 @@
 	var search = function () {
 		var data = {
 			q: input.val(),
-			compatible: !COMPATIBLE_ONLY
+			compatible: !COMPATIBLE_ONLY,
+			xsrf: Symphony.Utilities ? Symphony.Utilities.getXSRF() : ''
 		};
 		
 		if (!data.q) {
@@ -79,7 +80,7 @@
 		$.post(SEARCH_URL, data, function (data) {
 			var temp = $();
 			var createSpan = function (clas, text) {
-				return $('<span />').attr('class', 'ed_' + clas).text(text);	
+				return $('<span />').attr('class', 'ed_' + clas).text(text);
 			};
 			if (data.success && data.results) {
 				results.empty();
@@ -143,7 +144,7 @@
 		if (e.which === 13) {
 			download();
 		} else {
-			searchTimer = setTimeout(search, 200);	
+			searchTimer = setTimeout(search, 200);
 		}
 	};
 	
@@ -152,7 +153,7 @@
 		var handle = t.attr('data-handle');
 		if (confirm('Download ' + handle + '?')) {
 			input.val(handle);
-			setTimeout(download, 0);	
+			setTimeout(download, 0);
 		}
 		e.preventDefault();
 		return false;
