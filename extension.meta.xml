@@ -2,7 +2,8 @@
 <extension id="extension_downloader" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>Extension Downloader</name>
 	<description>
-		An extension that makes it easy to download others extensions directly from the backend. Uses data from symphonyextensions.com
+		An extension that makes it easy to download others extensions directly from the backend. 
+		Uses data from <http://symphonyextensions.com>
 	</description>
 	<repo type="github">https://github.com/DeuxHuitHuit/extension_downloader</repo>
 	<url type="discuss">https://github.com/DeuxHuitHuit/extension_downloader/issues</url>
@@ -22,7 +23,10 @@
 		<!-- None -->
 	</dependencies>
 	<releases>
-		<release version="1.0" date="2014-03-25" min="2.3" max="2.4">
+		<release version="1.1" date="2014-06-13" min="2.3" max="2.4.x">
+			- Added support for xsrf token.
+		</release>
+		<release version="1.0" date="2014-03-25" min="2.3" max="2.4.x">
 			- First release
 		</release>
 	</releases>
