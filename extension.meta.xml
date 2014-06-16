@@ -3,7 +3,7 @@
 	<name>Extension Downloader</name>
 	<description>
 		An extension that makes it easy to download others extensions directly from the backend. 
-		Uses data from <http://symphonyextensions.com>
+		Uses data from [symphonyextensions.com](http://symphonyextensions.com)
 	</description>
 	<repo type="github">https://github.com/DeuxHuitHuit/extension_downloader</repo>
 	<url type="discuss">https://github.com/DeuxHuitHuit/extension_downloader/issues</url>
