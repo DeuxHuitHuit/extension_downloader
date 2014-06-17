@@ -7,6 +7,7 @@
 	if(!defined("__IN_SYMPHONY__")) die("<h2>Error</h2><p>You cannot directly access this file</p>");
 
 	require_once(EXTENSIONS . '/extension_downloader/lib/require.php');
+	require_once(EXTENSIONS . '/extension_downloader/lib/class.symphonyextensions.php');
 	require_once(TOOLKIT . '/class.gateway.php');
 
 	class contentExtensionExtension_DownloaderDownload extends JSONPage {
@@ -130,33 +131,8 @@
 		}
 		
 		private function searchExtension($query) {
-			$url = "http://symphonyextensions.com/api/extensions/$query/";
 			
-			// create the Gateway object
-			$gateway = new Gateway();
-
-			// set our url
-			$gateway->init($url);
-
-			// get the raw response, ignore errors
-			$response = @$gateway->exec();
-			
-			if (!$response) {
-				throw new Exception(__("Could not read from %s", array($url)));
-			}
-			
-			// parse xml
-			$xml = @simplexml_load_string($response);
-			
-			if (!$xml) {
-				throw new Exception(__("Could not parse xml from %s", array($url)));
-			}
-			
-			$extension = $xml->xpath('/response/extension');
-			
-			if (empty($extension)) {
-				throw new Exception(__("Could not find extension %s", array($query)));
-			}
+			$xml = SymphonyExtensions::getExtensionAsXML($query);
 			
 			$this->extensionHandle = $xml->xpath('/response/extension/@id');
 			
