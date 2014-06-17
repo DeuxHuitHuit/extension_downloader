@@ -6,7 +6,7 @@
 	
 	"use strict";
 	
-	var SYM_URL = Symphony.Context.get('root') + '/symphony/';
+	var SYM_URL = Symphony.Context.get('symphony');
 	var BASE_URL = SYM_URL + 'extension/extension_downloader/';
 	var DOWNLOAD_URL = BASE_URL + 'download/';
 	var SEARCH_URL = BASE_URL + 'search/';
