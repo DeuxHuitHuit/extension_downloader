@@ -55,12 +55,18 @@
 		};
 	})();
 	
+	var showAlert = function (msg, success) {
+		Symphony.Elements.header.find('div.notifier').trigger('attach.notify', 
+			[Symphony.Language.get(msg), success ? 'success' : 'error']
+		);
+	};
+	
 	var error = function (data) {
-		alert(data.error || 'Unknown error');
+		showAlert(data.error || 'Unknown error');
 	};
 	
 	var httpError = function (e) {
-		alert('HTTP error');
+		showAlert('HTTP error');
 	};
 	
 	var search = function () {
@@ -123,8 +129,8 @@
 		
 		$.post(DOWNLOAD_URL, data, function (data) {
 			if (data.success) {
-				alert('Download completed! Page will refresh.');
-				document.location = EXTENSIONS_URL + '?download_handle=' + data.handle;
+				document.location = EXTENSIONS_URL + '?download_handle=' + data.handle +
+					'&download_success=1';
 			} else if (data.exists) {
 				if (confirm('Extension ' + data.handle + ' already exists. Overwrite?')) {
 					download(true); // force download
@@ -185,6 +191,10 @@
 			var tr = $('#contents table td input[name="items[' + qs.download_handle + ']"]').closest('tr');
 			tr.click();
 			win.scrollTop(tr.position().top);
+			
+			if (!!qs.download_success) {
+				showAlert('Extension "' + qs.download_handle + '" downloaded successfully', true);
+			}
 		}
 	};
 	
