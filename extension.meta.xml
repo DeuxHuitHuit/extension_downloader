@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="extension_downloader" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+<extension id="extension_downloader" status="released" xmlns="http://getsymphony.com/schemas/extension/1.0">
 	<name>Extension Downloader</name>
 	<description>
 		An extension that makes it easy to download others extensions directly from the backend. 
 		Uses data from http://symphonyextensions.com
 	</description>
 	<repo type="github">https://github.com/DeuxHuitHuit/extension_downloader</repo>
-	<url type="discuss">https://github.com/DeuxHuitHuit/extension_downloader/issues</url>
+	<url type="discuss">http://www.getsymphony.com/discuss/thread/105760/</url>
 	<url type="issues">https://github.com/DeuxHuitHuit/extension_downloader/issues</url>
 	<types>
 		<type>Extensions</type>
@@ -16,13 +16,16 @@
 	<authors>
 		<author>
 			<name github="DeuxHuitHuit" symphony="nitriques" twitter="DeuxHuitHuit">Deux Huit Huit</name>
-			<website>http://www.deuxhuithuit.com</website>
+			<website>https://deuxhuithuit.com</website>
 		</author>
 	</authors>
 	<dependencies>
 		<!-- None -->
 	</dependencies>
 	<releases>
+		<release version="1.1.1" date="2016-03-07" min="2.3" max="2.x.x">
+			- Updated compatibility info
+		</release>
 		<release version="1.1" date="2014-06-13" min="2.3" max="2.4.x">
 			- Added support for xsrf token.
 		</release>

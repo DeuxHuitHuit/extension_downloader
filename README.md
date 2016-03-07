@@ -1,6 +1,6 @@
 # Extension Downloader
 
-Version: 1.1
+Version: 1.1.x
 
 > An extension that makes it easy to download others extensions directly from the backend.
 
