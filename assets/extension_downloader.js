@@ -7,10 +7,10 @@
 	"use strict";
 	
 	var SYM_URL = Symphony.Context.get('symphony');
-	var BASE_URL = SYM_URL + 'extension/extension_downloader/';
+	var BASE_URL = SYM_URL + '/extension/extension_downloader/';
 	var DOWNLOAD_URL = BASE_URL + 'download/';
 	var SEARCH_URL = BASE_URL + 'search/';
-	var EXTENSIONS_URL = SYM_URL + 'system/extensions/';
+	var EXTENSIONS_URL = SYM_URL + '/system/extensions/';
 	
 	var COMPATIBLE_ONLY = true;
 	
