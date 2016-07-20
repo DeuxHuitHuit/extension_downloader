@@ -78,7 +78,7 @@
 		/**
 		 * Creates the table needed for the settings of the field
 		 */
-		public function update($previousVersion) {
+		public function update($previousVersion = false) {
 			return true;
 		}
 
