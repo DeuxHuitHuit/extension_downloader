@@ -133,8 +133,9 @@
 		private function searchExtension($query) {
 			
 			$xml = SymphonyExtensions::getExtensionAsXML($query);
+			$xml = $xml[0];
 			
-			$this->extensionHandle = $xml->xpath('/response/extension/@id');
+			$this->extensionHandle = $xml->xpath('@id');
 			
 			if (empty($this->extensionHandle)) {
 				throw new Exception(__("Could not find extension handle"));
@@ -142,7 +143,7 @@
 				$this->extensionHandle = (string)$this->extensionHandle[0];
 			}
 			
-			$this->downloadUrl = $xml->xpath("/response/extension/link[@rel='github:zip']/@href");
+			$this->downloadUrl = $xml->xpath("link[@rel='github:zip']/@href");
 			
 			if (empty($this->downloadUrl)) {
 				throw new Exception(__("Could not find extension handle"));
