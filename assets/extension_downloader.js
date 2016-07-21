@@ -190,8 +190,10 @@
 		var qs = queryStringParser.parse();
 		if (!!qs.download_handle) {
 			var tr = $('#contents table td input[name="items[' + qs.download_handle + ']"]').closest('tr');
-			tr.click();
-			win.scrollTop(tr.position().top);
+			if (!!tr.length) {
+				tr.click();
+				win.scrollTop(tr.position().top);
+			}
 			
 			if (!!qs.download_success) {
 				showAlert('Extension "' + qs.download_handle + '" downloaded successfully', true);
