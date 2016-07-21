@@ -26,6 +26,9 @@
 		<release version="1.1.2" date="2016-07-21" min="2.3" max="2.x.x">
 			- Updated fixed issues #5 and #6, compatibility with php 7 
 		</release>
+		<release version="1.1.1" date="2016-03-07" min="2.3" max="2.x.x">
+			 Updated compatibility info
+		</release>
 		<release version="1.1" date="2014-06-13" min="2.3" max="2.4.x">
 			- Added support for xsrf token.
 		</release>
