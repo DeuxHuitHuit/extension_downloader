@@ -118,7 +118,7 @@
 		var data = {
 			q: input.val(),
 			force: force,
-	    	xsrf: Symphony.Utilities ? Symphony.Utilities.getXSRF() : ''
+			xsrf: Symphony.Utilities ? Symphony.Utilities.getXSRF() : ''
 		};
 		
 		if (!data.q) {
