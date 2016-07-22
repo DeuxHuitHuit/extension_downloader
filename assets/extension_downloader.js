@@ -7,10 +7,10 @@
 	"use strict";
 	
 	var SYM_URL = Symphony.Context.get('symphony');
-	var BASE_URL = SYM_URL + 'extension/extension_downloader/';
+	var BASE_URL = SYM_URL + '/extension/extension_downloader/';
 	var DOWNLOAD_URL = BASE_URL + 'download/';
 	var SEARCH_URL = BASE_URL + 'search/';
-	var EXTENSIONS_URL = SYM_URL + 'system/extensions/';
+	var EXTENSIONS_URL = SYM_URL + '/system/extensions/';
 	
 	var COMPATIBLE_ONLY = true;
 	
@@ -117,7 +117,8 @@
 	var download = function (force) {
 		var data = {
 			q: input.val(),
-			force: force
+			force: force,
+			xsrf: Symphony.Utilities ? Symphony.Utilities.getXSRF() : ''
 		};
 		
 		if (!data.q) {
@@ -189,8 +190,10 @@
 		var qs = queryStringParser.parse();
 		if (!!qs.download_handle) {
 			var tr = $('#contents table td input[name="items[' + qs.download_handle + ']"]').closest('tr');
-			tr.click();
-			win.scrollTop(tr.position().top);
+			if (!!tr.length) {
+				tr.click();
+				win.scrollTop(tr.position().top);
+			}
 			
 			if (!!qs.download_success) {
 				showAlert('Extension "' + qs.download_handle + '" downloaded successfully', true);

@@ -133,6 +133,7 @@
 		private function searchExtension($query) {
 			
 			$xml = SymphonyExtensions::getExtensionAsXML($query);
+			$xml = current($xml);
 			
 			$this->extensionHandle = $xml->xpath('/response/extension/@id');
 			
