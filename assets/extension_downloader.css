@@ -14,6 +14,12 @@
 	height: 100%;
 }
 
+@media (max-width: 766px){
+	#extension_downloader {
+		display: none;
+	}
+}
+
 #extension_downloader h3 {
 	font-size: 1.4rem;
 	margin: 0 1.5rem 0 0;
@@ -29,12 +35,6 @@
 
 #extension_downloader h3 a:hover {
 	color: currentColor;
-}
-
-@media (max-width: (767px)){
-	#extension_downloader h3 a {
-		display: none;
-	}
 }
 
 #extension_downloader.loading h3 {
