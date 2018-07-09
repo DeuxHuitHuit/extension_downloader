@@ -27,7 +27,7 @@
 }
 
 #extension_downloader h3 a {
-	transition: color 0.45s;
+	transition: color 0.2s;
 	color: #2f77eb;
 	font-size: 1.2rem;
 	padding-left: 1rem;
