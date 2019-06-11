@@ -2,7 +2,7 @@
 <extension id="extension_downloader" status="released" xmlns="http://getsymphony.com/schemas/extension/1.0">
 	<name>Extension Downloader</name>
 	<description>
-		An extension that makes it easy to download others extensions directly from the backend. 
+		An extension that makes it easy to download others extensions directly from the backend.
 		Uses data from http://symphonyextensions.com
 	</description>
 	<repo type="github">https://github.com/DeuxHuitHuit/extension_downloader</repo>
@@ -23,8 +23,11 @@
 		<!-- None -->
 	</dependencies>
 	<releases>
+		<release version="2.0.0" date="TBA" min="4.0.0" max="4.x.x" php-min="5.6.x" php-max="7.x.x">
+			- Update for Symphony 4.x
+		</release>
 		<release version="1.1.2" date="2016-07-21" min="2.3" max="2.x.x">
-			- Updated fixed issues #5 and #6, compatibility with php 7 
+			- Updated fixed issues #5 and #6, compatibility with php 7
 		</release>
 		<release version="1.1.1" date="2016-03-07" min="2.3" max="2.x.x">
 			- Updated compatibility info
